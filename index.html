@@ -1,124 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aliviando a Bagagem</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Player de Áudio Responsivo</title>
   <style>
     body {
-      margin: 0;
-      padding: 20px;
       background-color: #000;
-      font-family: sans-serif;
       color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
     }
     .cover {
       width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
+      max-width: 300px;
+      margin-bottom: 20px;
     }
     .cover img {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
     }
-    .playlist audio {
+    .player {
       width: 100%;
-      margin-bottom: 30px;
-      display: block;
-      border-radius: 6px;
+      max-width: 400px;
       background-color: #111;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .playlist h3 {
-      font-size: 16px;
-      margin: 0 0 5px 0;
+    .track-title {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .control-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .control-btn:hover {
+      transform: scale(1.1);
+    }
+    .control-btn svg {
+      width: 36px;
+      height: 36px;
+      fill: white;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background-color: #333;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 20px;
+      cursor: pointer;
+      position: relative;
+    }
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, white 0%, #777 100%);
+      width: 0%;
+      transition: width 0.2s linear;
+      animation: progressAnimation 2s infinite linear alternate;
+    }
+    @keyframes progressAnimation {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .time-info {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 5px;
+    }
+    .playlist {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .playlist-item {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #333;
+      text-align: center;
+    }
+    .playlist-item:hover {
+      background-color: #222;
+    }
+    .active {
+      background-color: #333;
+    }
+    @media (max-width: 400px) {
+      .player { padding: 15px; }
+      .control-btn svg { width: 28px; height: 28px; }
+      .controls { gap: 12px; }
+      .track-title { font-size: 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="cover">
-    <img src="https://live.staticflickr.com/65535/54443254301_a5da23a006_w.jpg" alt="Capa do Áudio">
+
+<div class="cover">
+  <img src="https://live.staticflickr.com/65535/54443254301_a5da23a006_w.jpg" alt="Capa do Álbum">
+</div>
+
+<div class="player">
+  <div class="track-title" id="track-title">Selecione o Capítulo</div>
+
+  <div class="controls">
+    <button id="rewind-btn" class="control-btn" title="Voltar 10s">
+      <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.07-.28 2.07-.77 2.94l1.46 1.46C19.54 14.38 20 12.74 20 11c0-4.42-3.58-8-8-8z"></path><text x="4" y="20" font-size="8" fill="white">10</text></svg>
+    </button>
+    <button id="prev-btn" class="control-btn" title="Anterior">
+      <svg viewBox="0 0 24 24"><path d="M18 20l-8.5-8L18 4v16zM6 4h2v16H6V4z"></path></svg>
+    </button>
+    <button id="play-btn" class="control-btn" title="Play/Pause">
+      <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+      <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+    </button>
+    <button id="next-btn" class="control-btn" title="Próxima">
+      <svg viewBox="0 0 24 24"><path d="M6 4l8.5 8L6 20V4zm9 0h2v16h-2V4z"></path></svg>
+    </button>
+    <button id="forward-btn" class="control-btn" title="Adiantar 10s">
+      <svg viewBox="0 0 24 24"><path d="M12 20v3l4-4-4-4v3c-3.31 0-6-2.69-6-6 0-1.07.28-2.07.77-2.94L5.31 8.7C4.46 9.62 4 11.26 4 13c0 4.42 3.58 8 8 8z"></path><text x="14" y="20" font-size="8" fill="white">10</text></svg>
+    </button>
   </div>
 
-  <div class="playlist">
-<h3>Capítulo 1 - A Bagagem da Vida</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%201.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 2 - O Dó da Vida</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%202.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 3 - Vou Fazer do Meu Jeito</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/Cap%203.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 4 - A Prisão do Querer</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%204.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 5 - Eu Lhe Darei Descanso</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%205.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 6 - E Se? E Como Posso?</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%206.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 7 - Lá Fora é uma Selva</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%207.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 8 - Uma Troca Celestial</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%208.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 9 - Suplante a Si mesmo</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%209.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 10 - Eu o Levarei para o Lar</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2010.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 11 - Quando Chegar o Pranto</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2011.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 12 - Do Pânico à Paz</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2012.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 13 - Noites Silenciosas e Dias Solitários</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2013.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 14 - O Canto do Galo e Eu</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2014.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 15 - Ovelhas Ungidas e Feridas Curadas</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2015.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 16 - Compotas e Geleias</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2016.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 17 - A Amorosa Perseguição de Deus</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2017.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 18 - Quase Céu: O Fardo da Saudade</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/cap%2018.mp3" type="audio/mp3">
-</audio>
-<h3>Capítulo 19 - Conclusão: A Jornada Continua Leve</h3>
-<audio controls>
-<source src="https://archive.org/download/cap-17_202504/CONCLUSÃO.mp3" type="audio/mp3">
-</audio>
+  <div class="progress-bar" id="progress-bar">
+    <div class="progress" id="progress"></div>
   </div>
+
+  <div class="time-info">
+    <span id="current-time">00:00</span>
+    <span id="total-time">00:00</span>
+  </div>
+
+  <audio id="audio-player"></audio>
+  <div class="playlist" id="playlist"></div>
+</div>
+
+<script>
+// Aqui virá o JavaScript de funcionamento (pode enviar a playlist ou script que te ajudo a completar!)
+</script>
+
 </body>
 </html>
