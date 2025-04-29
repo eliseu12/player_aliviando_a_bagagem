@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Player de Áudio Responsivo</title>
   <style>
     body {
@@ -21,7 +21,6 @@
       max-width: 300px;
       margin-bottom: 20px;
     }
-
     .cover img {
       width: 100%;
       border-radius: 12px;
@@ -59,22 +58,20 @@
       background: none;
       border: none;
       cursor: pointer;
-      width: 50px;
-      height: 50px;
+      width: 70px;
+      height: 70px;
       padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: transform 0.2s;
     }
-
     .control-btn:hover {
       transform: scale(1.1);
     }
-
     .control-btn svg {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       fill: white;
     }
 
@@ -88,18 +85,11 @@
       cursor: pointer;
       position: relative;
     }
-
     .progress {
       height: 100%;
       background: linear-gradient(90deg, white 0%, #777 100%);
       width: 0%;
       transition: width 0.2s linear;
-      animation: progressAnimation 2s infinite linear alternate;
-    }
-
-    @keyframes progressAnimation {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
     }
 
     .time-info {
@@ -115,36 +105,38 @@
       margin-top: 20px;
       width: 100%;
     }
-
     .playlist-item {
-      padding: 10px;
+      padding: 14px 10px;       /* mais espaço interno */
+      margin-bottom: 8px;       /* espaço entre itens */
       cursor: pointer;
       border-bottom: 1px solid #333;
-      text-align: center;
+      text-align: left;
+      font-size: 16px;          /* fonte maior */
+      line-height: 1.4;         /* espaçamento de linha */
     }
-
     .playlist-item:hover {
       background-color: #222;
     }
-
-    .active {
+    .playlist-item.active {
       background-color: #333;
     }
 
-    /* Responsividade extra para celulares menores */
     @media (max-width: 400px) {
-      .player {
-        padding: 15px;
+      .control-btn {
+        width: 60px;
+        height: 60px;
       }
       .control-btn svg {
-        width: 24px;
-        height: 24px;
-      }
-      .controls {
-        gap: 20px;
+        width: 36px;
+        height: 36px;
       }
       .track-title {
         font-size: 16px;
+      }
+      .playlist-item {
+        font-size: 14px;
+        padding: 12px 8px;
+        margin-bottom: 6px;
       }
     }
   </style>
@@ -152,22 +144,22 @@
 <body>
 
   <div class="cover">
-    <img id="cover-image" src="https://live.staticflickr.com/65535/54443254301_a5da23a006_w.jpg" alt="Capa do Álbum">
+    <img id="cover-image" src="https://live.staticflickr.com/65535/54443254301_a5da23a006_w.jpg" alt="Capa do Álbum" />
   </div>
 
   <div class="player">
-    <div class="track-title" id="track-title">Selecione o Capítulo</div>
+    <div class="track-title" id="track-title">Selecione um Capítulo</div>
 
     <div class="controls">
       <button id="prev-btn" class="control-btn" title="Anterior">
-        <svg viewBox="0 0 24 24"><path d="M18 20l-8.5-8L18 4v16zM6 4h2v16H6V4z"></path></svg>
+        <svg viewBox="0 0 24 24"><path d="M18 20l-8.5-8L18 4v16zM6 4h2v16H6V4z"/></svg>
       </button>
       <button id="play-btn" class="control-btn" title="Play/Pause">
-        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-        <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+        <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
       <button id="next-btn" class="control-btn" title="Próxima">
-        <svg viewBox="0 0 24 24"><path d="M6 4l8.5 8L6 20V4zm9 0h2v16h-2V4z"></path></svg>
+        <svg viewBox="0 0 24 24"><path d="M6 4l8.5 8L6 20V4zm9 0h2v16h-2V4z"/></svg>
       </button>
     </div>
 
@@ -185,7 +177,7 @@
     </audio>
 
     <div class="playlist" id="playlist">
-      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%201.mp3" data-title="A Bagagem da Vida">1 - A Bagagem da Vida</div>
+     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%201.mp3" data-title="A Bagagem da Vida">1 - A Bagagem da Vida</div>
       <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%202.mp3" data-title="O Dó da Vida">2 - O Dó da Vida</div>
       <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/Cap%203.mp3" data-title="Vou Fazer do Meu Jeito">3 - Vou Fazer do Meu Jeito</div>
     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%204.mp3" data-title="A Prisão do Querer">4 - A Prisão do Querer</div>
@@ -205,6 +197,7 @@
      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2018.mp3" data-title="Quase Céu: O Fardo da Saudade">18 - Quase Céu: O Fardo da Saudade</div>
      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/CONCLUSA%CC%83O.mp3" data-title="Conclusão: A Jornada Continua Leve">19 - Conclusão: A Jornada Continua Leve</div>
   </div>
+  </div>
 
   <script>
     const audioPlayer = document.getElementById('audio-player');
@@ -222,45 +215,33 @@
 
     let isPlaying = false;
     let currentIndex = 0;
-
     const tracks = Array.from(playlistItems);
 
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
-      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      return `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
     }
 
     function loadTrack(index) {
-      const item = tracks[index];
       tracks.forEach(el => el.classList.remove('active'));
+      const item = tracks[index];
       item.classList.add('active');
-
-      const src = item.getAttribute('data-src');
-      const title = item.getAttribute('data-title');
-
-      audioPlayer.src = src;
-      trackTitle.textContent = title;
+      audioPlayer.src = item.dataset.src;
+      trackTitle.textContent = item.dataset.title;
     }
 
     function playPause() {
       if (!audioPlayer.src) return;
-
-      if (isPlaying) {
-        audioPlayer.pause();
-      } else {
-        audioPlayer.play();
-      }
+      isPlaying ? audioPlayer.pause() : audioPlayer.play();
     }
 
     playBtn.addEventListener('click', playPause);
-
     prevBtn.addEventListener('click', () => {
       currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
       loadTrack(currentIndex);
       audioPlayer.play();
     });
-
     nextBtn.addEventListener('click', () => {
       currentIndex = (currentIndex + 1) % tracks.length;
       loadTrack(currentIndex);
@@ -272,7 +253,6 @@
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'inline';
     });
-
     audioPlayer.addEventListener('pause', () => {
       isPlaying = false;
       playIcon.style.display = 'inline';
@@ -282,28 +262,22 @@
     audioPlayer.addEventListener('loadedmetadata', () => {
       totalTimeDisplay.textContent = formatTime(audioPlayer.duration);
     });
-
     audioPlayer.addEventListener('timeupdate', () => {
-      if (audioPlayer.duration) {
-        const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-        progress.style.width = percent + '%';
-        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
-      }
+      if (!audioPlayer.duration) return;
+      const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+      progress.style.width = percent + '%';
+      currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
     });
-
     audioPlayer.addEventListener('ended', () => {
       currentIndex = (currentIndex + 1) % tracks.length;
       loadTrack(currentIndex);
       audioPlayer.play();
     });
 
-    progressBar.addEventListener('click', (e) => {
+    progressBar.addEventListener('click', e => {
       const rect = progressBar.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
-      const width = rect.width;
-      const duration = audioPlayer.duration;
-      
-      audioPlayer.currentTime = (clickX / width) * duration;
+      audioPlayer.currentTime = (clickX / rect.width) * audioPlayer.duration;
     });
 
     playlistItems.forEach((item, idx) => {
