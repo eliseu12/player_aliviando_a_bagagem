@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Player de Áudio Responsivo</title>
+  <!-- Ícone padrão (será substituído dinamicamente) -->
+  <link rel="icon" id="favicon" href="https://live.staticflickr.com/65535/54443254301_a5da23a006_w.jpg" sizes="300x300" type="image/jpeg">
+
   <style>
     body {
       background-color: #000;
@@ -60,7 +63,6 @@
       cursor: pointer;
       width: 70px;
       height: 70px;
-      padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -172,31 +174,29 @@
       <span id="total-time">00:00</span>
     </div>
 
-    <audio id="audio-player">
-      Seu navegador não suporta o elemento de áudio.
-    </audio>
+    <audio id="audio-player">Seu navegador não suporta o elemento de áudio.</audio>
 
     <div class="playlist" id="playlist">
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%201.mp3" data-title="A Bagagem da Vida">1 - A Bagagem da Vida</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%201.mp3" data-title="A Bagagem da Vida">1 - A Bagagem da Vida</div>
       <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%202.mp3" data-title="O Dó da Vida">2 - O Dó da Vida</div>
       <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/Cap%203.mp3" data-title="Vou Fazer do Meu Jeito">3 - Vou Fazer do Meu Jeito</div>
-    <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%204.mp3" data-title="A Prisão do Querer">4 - A Prisão do Querer</div>
-    <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%205.mp3" data-title="Eu Lhe Darei Descanso">5 - Eu Lhe Darei Descanso</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%206.mp3" data-title="E Se? E Como Posso?">6 - E Se? E Como Posso?</div>
-    <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%207.mp3" data-title="Lá Fora é uma Selva">7 - Lá Fora é uma Selva</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%208.mp3" data-title="Uma Troca Celestial">8 - Uma Troca Celestial</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%209.mp3" data-title="Suplante a Si mesmo">9 - Suplante a Si mesmo</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2010.mp3" data-title="Eu o Levarei para o Lar">10 - Eu o Levarei para o Lar</div>
-    <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2011.mp3" data-title="Quando Chegar o Pranto">11 - Quando Chegar o Pranto</div>
-    <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2012.mp3" data-title="Do Pânico à Paz">12 - Do Pânico à Paz</div>
-    <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2013.mp3" data-title="Noites Silenciosas e Dias Solitários">13 - Noites Silenciosas e Dias Solitários</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2014.mp3" data-title="O Canto do Galo e Eu">14 - O Canto do Galo e Eu</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2015.mp3" data-title="Ovelhas Ungidas e Feridas Curadas">15 - Ovelhas Ungidas e Feridas Curadas</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2016.mp3" data-title="Compotas e Geleias">16 - Compotas e Geleias</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2017.mp3" data-title="A Amorosa Perseguição de Deus">17 - A Amorosa Perseguição de Deus</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2018.mp3" data-title="Quase Céu: O Fardo da Saudade">18 - Quase Céu: O Fardo da Saudade</div>
-     <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/CONCLUSA%CC%83O.mp3" data-title="Conclusão: A Jornada Continua Leve">19 - Conclusão: A Jornada Continua Leve</div>
-  </div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%204.mp3" data-title="A Prisão do Querer">4 - A Prisão do Querer</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%205.mp3" data-title="Eu Lhe Darei Descanso">5 - Eu Lhe Darei Descanso</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%206.mp3" data-title="E Se? E Como Posso?">6 - E Se? E Como Posso?</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%207.mp3" data-title="Lá Fora é uma Selva">7 - Lá Fora é uma Selva</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%208.mp3" data-title="Uma Troca Celestial">8 - Uma Troca Celestial</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%209.mp3" data-title="Suplante a Si mesmo">9 - Suplante a Si mesmo</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2010.mp3" data-title="Eu o Levarei para o Lar">10 - Eu o Levarei para o Lar</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2011.mp3" data-title="Quando Chegar o Pranto">11 - Quando Chegar o Pranto</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2012.mp3" data-title="Do Pânico à Paz">12 - Do Pânico à Paz</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2013.mp3" data-title="Noites Silenciosas e Dias Solitários">13 - Noites Silenciosas e Dias Solitários</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2014.mp3" data-title="O Canto do Galo e Eu">14 - O Canto do Galo e Eu</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2015.mp3" data-title="Ovelhas Ungidas e Feridas Curadas">15 - Ovelhas Ungidas e Feridas Curadas</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2016.mp3" data-title="Compotas e Geleias">16 - Compotas e Geleias</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2017.mp3" data-title="A Amorosa Perseguição de Deus">17 - A Amorosa Perseguição de Deus</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/cap%2018.mp3" data-title="Quase Céu: O Fardo da Saudade">18 - Quase Céu: O Fardo da Saudade</div>
+      <div class="playlist-item" data-src="https://archive.org/download/cap-17_202504/CONCLUSA%CC%83O.mp3" data-title="Conclusão: A Jornada Continua Leve">19 - Conclusão: A Jornada Continua Leve</div>
+    </div>
   </div>
 
   <script>
@@ -205,6 +205,7 @@
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const trackTitle = document.getElementById('track-title');
+    const coverImage = document.getElementById('cover-image');
     const playlistItems = document.querySelectorAll('.playlist-item');
     const progressBar = document.getElementById('progress-bar');
     const progress = document.getElementById('progress');
@@ -212,82 +213,68 @@
     const pauseIcon = document.getElementById('pause-icon');
     const currentTimeDisplay = document.getElementById('current-time');
     const totalTimeDisplay = document.getElementById('total-time');
+    const faviconLink = document.getElementById('favicon');
 
     let isPlaying = false;
     let currentIndex = 0;
     const tracks = Array.from(playlistItems);
 
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+    function formatTime(s) {
+      const m = Math.floor(s/60);
+      const sec = Math.floor(s%60);
+      return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
     }
 
-    function loadTrack(index) {
-      tracks.forEach(el => el.classList.remove('active'));
-      const item = tracks[index];
-      item.classList.add('active');
-      audioPlayer.src = item.dataset.src;
-      trackTitle.textContent = item.dataset.title;
+    function updateMetadata() {
+      const title = tracks[currentIndex].dataset.title;
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title,
+          artwork: [ { src: coverImage.src, sizes: '300x300', type: 'image/jpeg' } ]
+        });
+        navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+        navigator.mediaSession.setActionHandler('play', () => playPause());
+        navigator.mediaSession.setActionHandler('pause', () => playPause());
+        navigator.mediaSession.setActionHandler('previoustrack', () => prevBtn.click());
+        navigator.mediaSession.setActionHandler('nexttrack', () => nextBtn.click());
+        navigator.mediaSession.setActionHandler('seekbackward', ({ seekOffset }) => {
+          audioPlayer.currentTime = Math.max(audioPlayer.currentTime - (seekOffset || 10), 0);
+        });
+        navigator.mediaSession.setActionHandler('seekforward', ({ seekOffset }) => {
+          audioPlayer.currentTime = Math.min(audioPlayer.currentTime + (seekOffset || 10), audioPlayer.duration);
+        });
+      }
+      document.title = `${title} – Player de Áudio`;
+      faviconLink.href = coverImage.src;
+    }
+
+    function loadTrack(i) {
+      tracks.forEach(el => el.classList.remove('active')); tracks[i].classList.add('active');
+      audioPlayer.src = tracks[i].dataset.src;
+      trackTitle.textContent = tracks[i].dataset.title;
+      currentIndex = i;
+      updateMetadata();
     }
 
     function playPause() {
-      if (!audioPlayer.src) return;
+      if (!audioPlayer.src) loadTrack(0);
       isPlaying ? audioPlayer.pause() : audioPlayer.play();
     }
 
     playBtn.addEventListener('click', playPause);
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-      loadTrack(currentIndex);
-      audioPlayer.play();
-    });
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % tracks.length;
-      loadTrack(currentIndex);
-      audioPlayer.play();
-    });
+    prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + tracks.length) % tracks.length; loadTrack(currentIndex); audioPlayer.play(); });
+    nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % tracks.length; loadTrack(currentIndex); audioPlayer.play(); });
 
-    audioPlayer.addEventListener('play', () => {
-      isPlaying = true;
-      playIcon.style.display = 'none';
-      pauseIcon.style.display = 'inline';
-    });
-    audioPlayer.addEventListener('pause', () => {
-      isPlaying = false;
-      playIcon.style.display = 'inline';
-      pauseIcon.style.display = 'none';
-    });
+    audioPlayer.addEventListener('play', () => { isPlaying = true; playIcon.style.display = 'none'; pauseIcon.style.display = 'inline'; updateMetadata(); });
+    audioPlayer.addEventListener('pause', () => { isPlaying = false; playIcon.style.display = 'inline'; pauseIcon.style.display = 'none'; updateMetadata(); });
 
-    audioPlayer.addEventListener('loadedmetadata', () => {
-      totalTimeDisplay.textContent = formatTime(audioPlayer.duration);
-    });
-    audioPlayer.addEventListener('timeupdate', () => {
-      if (!audioPlayer.duration) return;
-      const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-      progress.style.width = percent + '%';
-      currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
-    });
-    audioPlayer.addEventListener('ended', () => {
-      currentIndex = (currentIndex + 1) % tracks.length;
-      loadTrack(currentIndex);
-      audioPlayer.play();
-    });
+    audioPlayer.addEventListener('loadedmetadata', () => { updateMetadata(); totalTimeDisplay.textContent = formatTime(audioPlayer.duration); });
+    audioPlayer.addEventListener('timeupdate', () => { if (!audioPlayer.duration) return; progress.style.width = `${(audioPlayer.currentTime / audioPlayer.duration) * 100}%`; currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime); });
+    audioPlayer.addEventListener('ended', () => { currentIndex = (currentIndex + 1) % tracks.length; loadTrack(currentIndex); audioPlayer.play(); });
 
-    progressBar.addEventListener('click', e => {
-      const rect = progressBar.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      audioPlayer.currentTime = (clickX / rect.width) * audioPlayer.duration;
-    });
-
-    playlistItems.forEach((item, idx) => {
-      item.addEventListener('click', () => {
-        currentIndex = idx;
-        loadTrack(currentIndex);
-        audioPlayer.play();
-      });
-    });
+    progressBar.addEventListener('click', e => { const rect = progressBar.getBoundingClientRect(); audioPlayer.currentTime = ((e.clientX - rect.left) / rect.width) * audioPlayer.duration; });
+    playlistItems.forEach((item, i) => item.addEventListener('click', () => { currentIndex = i; loadTrack(i); audioPlayer.play(); }));
+    // Não carrega faixa automaticamente no início. Seleção e reprodução começam ao clicar em Play.
   </script>
-
 </body>
 </html>
